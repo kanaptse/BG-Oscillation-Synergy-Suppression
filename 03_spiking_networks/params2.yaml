@@ -1,0 +1,84 @@
+params_pop:
+  D2:
+    n_neurons: 6000
+    model_type: LIF
+    C_m: 4.9
+    V_th: -50
+    E_L: -76.8
+    V_reset: -76.8
+    I: 16
+    sig: 0.6
+    dt: ${dt}
+    random_init: true
+
+  Proto:
+    n_neurons: 780
+    model_type: LIF
+    C_m: 12.9
+    V_th: -54.8
+    E_L: -65.0
+    V_reset: -65.0
+    I: 16
+    sig: 0.6
+    dt: ${dt}
+    random_init: true
+
+  FSN:
+    n_neurons: 420
+    model_type: LIF
+    C_m: 3.1
+    V_th: -52.4
+    E_L: -78.2
+    V_reset: -78.2
+    I: 13
+    sig: 0.6
+    dt: ${dt}
+    random_init: true
+
+  STN:
+    n_neurons: 408
+    model_type: LIF
+    C_m: 5.1
+    V_th: -50.8
+    E_L: -59
+    V_reset: -59
+    I: 7
+    sig: 0.2
+    dt: ${dt}
+    random_init: true
+
+params_conn_all:
+  - source: D2
+    target: Proto
+    conn_prob: 0.0833
+    delay: 7
+    g: -1.28
+    tau: 5.5
+
+  - source: FSN
+    target: D2
+    conn_prob: 0.0262
+    delay: 1.7
+    g: -4.8
+    tau: 10.0
+
+  - source: Proto
+    target: FSN
+    conn_prob: 0.0128
+    delay: 7
+    g: -1.6
+    tau: 5.5
+
+  - source: Proto
+    target: STN
+    conn_prob: 0.0385
+    delay: 1
+    g: -0.4  # -0.08 * 5
+    tau: 8.0
+
+  - source: STN
+    target: Proto
+    conn_prob: 0.0735
+    delay: 2
+    g: 0.42
+    tau: 10.0
